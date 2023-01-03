@@ -1,12 +1,17 @@
+
 #include <GL/gl.h>
 #include <GL/glu.h>
 #include <GL/glut.h>
-
 #include <stdlib.h>
 #include <windows.h>
 #include <math.h>
-
+void display();
 float xRotated = 90.0, yRotated = 0.0, zRotated = 0.0;
+float angle=0;
+void timer(int);
+void init(){
+
+}
 
 //------------------------------  reshapeFunc  ---------------------------------
 
@@ -15,25 +20,99 @@ void reshapeFunc (int w, int h)
     glViewport(0,0,(GLsizei)w,(GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective (60,1,2.0,50.0);
+    gluPerspective (60.0,1,2, 50.0);
     glMatrixMode(GL_MODELVIEW);
 }
+
+
 
 //------------------------------  display   -------------------------------
 
 void display (void)
 {
+    glClearColor(0,0.7,1,1.0);
 
     glClear        (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity ();
     glTranslatef    (0.0, 0.0, -15.0);
-    glBegin(GL_POLYGON);
+
+	//Your code is written here
+   glTranslatef    (0.0, 0.0, -15);
+   glRotatef(60,1.0,1.0,1.0);
+    //front face
+    //top
+    glColor3f(1,0,0);
+   glVertex3f(-1,4,2);
+   glVertex3f(-1,4,-2);
+   glVertex3f(1,4,-2);
+   glVertex3f(1,4,2);
+   //Front
+  glBegin (GL_QUADS) ;
+  //front
     glColor3f(1.0,0.0,0.0);
-    glVertex3f(-1.0,1.0,0.0);
-    glVertex3f(-1.0,-1.0,0.0);
-    glVertex3f(1.0,-1.0,0.0);
-    glVertex3f(1.0,1.0,0.0);
+    glVertex3f(-1.0,4.0,2.0);
+    glVertex3f(-1,1.0,2.0);
+    glVertex3f(1.0,1.0,2.0);
+    glVertex3f(1.0,4.0,2.0);
+    //back
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(1.0,4.0,-2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    //right
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(1.0,4.0,2.0);
+    glVertex3f(1.0,1.0,2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //left
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,2.0);
+    glVertex3f(-1.0,4.0,2.0);
+    //top
+    glColor3f(0.0,1.0,1.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(-1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //bottom
+    glColor3f(1.0,0.5,1.0);
+    glVertex3f(1.0,1.0,2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,2.0);
     glEnd();
+    glRotatef(angle,1.0,1.0,1.0);
+    glBegin(GL_TRIANGLE_FAN);
+     glVertex3f(0.0,6.0,0.0);
+     //front pyramid
+    glColor3f(1.0,0.0,1.0);
+    glVertex3f(-1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,2.0);
+    //pyramid back
+    glColor3f(1.0,0.0,1.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //pyramid right
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //pyramid left
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(-1.0,4.0,2.0);
+    glEnd();
+
+
+
+
+
+
+
+
 
 
 
@@ -90,21 +169,26 @@ const GLfloat high_shininess[] = { 100.0f };
 
 int main (int argc, char **argv)
 {
-    glutInit               (&argc, argv);
+    glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE); // buffer mode
     glutInitWindowSize     (800, 700);
     glutInitWindowPosition (700, 200);
     glutCreateWindow       ("Sphere Rotating Animation");
-
     glClearColor (1.0, 1.0, 1.0, 0.0);
-
     glutDisplayFunc (display);
     glutReshapeFunc (reshapeFunc);
-    glutIdleFunc    (idleFunc);
-
+    glutTimerFunc(200,timer,0);
+    glutIdleFunc (idleFunc);
     glClearColor(1,1,1,1);
     texture(); // Lighting and textures
-
-
     glutMainLoop();
+    init();
 }
+void timer(int)
+{ glutPostRedisplay();
+  glutTimerFunc(1000/60,timer,0);
+  angle+=0.8;
+  if(angle>360)
+    angle=angle-360;
+}
+
