@@ -20,7 +20,7 @@ void reshapeFunc (int w, int h)
     glViewport(0,0,(GLsizei)w,(GLsizei)h);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective (60.0,1,2, 50.0);
+    gluPerspective (60.0,1,10, 50.0);
     glMatrixMode(GL_MODELVIEW);
 }
 
@@ -38,15 +38,8 @@ void display (void)
 
 	//Your code is written here
    glTranslatef    (0.0, 0.0, -15);
-   glRotatef(60,1.0,1.0,1.0);
+   glRotatef(45,1.0,1.0,1.0);
     //front face
-    //top
-    glColor3f(1,0,0);
-   glVertex3f(-1,4,2);
-   glVertex3f(-1,4,-2);
-   glVertex3f(1,4,-2);
-   glVertex3f(1,4,2);
-   //Front
   glBegin (GL_QUADS) ;
   //front
     glColor3f(1.0,0.0,0.0);
@@ -85,9 +78,8 @@ void display (void)
     glVertex3f(-1.0,1.0,-2.0);
     glVertex3f(-1.0,1.0,2.0);
     glEnd();
-    glRotatef(angle,1.0,1.0,1.0);
     glBegin(GL_TRIANGLE_FAN);
-     glVertex3f(0.0,6.0,0.0);
+    glVertex3f(0.0,6.0,0.0);
      //front pyramid
     glColor3f(1.0,0.0,1.0);
     glVertex3f(-1.0,4.0,2.0);
@@ -105,6 +97,125 @@ void display (void)
     glVertex3f(-1.0,4.0,-2.0);
     glVertex3f(-1.0,4.0,2.0);
     glEnd();
+    glBegin(GL_QUADS);
+    //Road
+    glColor3f(0.328412,0.329412,0.329412);
+    glVertex3f(-25.0,0.0,0.0);
+    glVertex3f(-25.0,-15.0,0.0);
+    glVertex3f(30.0,-15.0,0.0);
+    glVertex3f(30.0,0.0,0.0);
+    glEnd();
+     glBegin(GL_QUADS);
+    //Road
+    glColor3f(0.328412,0.329412,0.329412);
+    glVertex3f(-25.0,0.0,0.0);
+    glVertex3f(-25.0,-15.0,0.0);
+    glVertex3f(30.0,-15.0,0.0);
+    glVertex3f(30.0,0.0,0.0);
+    glEnd();
+    glBegin(GL_QUADS);
+    //Road Strip
+    glColor3f(1,1,1);
+    glVertex3f(-15.0,-5.0,0.1);
+    glVertex3f(-15.0,-8.0,0.1);
+    glVertex3f(-5.0,-8.0,0.1);
+    glVertex3f(-5.0,-5.0,0.1);
+
+    glColor3f(1,1,1);
+    glVertex3f(0.0,-5.0,0.1);
+    glVertex3f(0.0,-8.0,0.1);
+    glVertex3f(10.0,-8.0,0.1);
+    glVertex3f(10.0,-5.0,0.1);
+
+    glColor3f(1,1,1);
+    glVertex3f(15.0,-5.0,0.1);
+    glVertex3f(15.0,-8.0,0.1);
+    glVertex3f(25.0,-8.0,0.1);
+    glVertex3f(25.0,-5.0,0.1);
+
+    glEnd();
+    glBegin (GL_QUADS) ;
+  //front
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(-5+angle,-2,5.0);
+    glVertex3f(-5+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-2.0,5.0);
+    //back
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(5.0+angle,-2.0,0.0);
+    glVertex3f(5.0+angle,-6.0,0.0);
+    glVertex3f(-5.0+angle,-6.0,0.0);
+    glVertex3f(-5.0+angle,-2.0,0.0);
+    //right
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(5.0+angle,-2.0,5.0);
+    glVertex3f(5.0+angle,-6,5.0);
+    glVertex3f(5.0+angle,-6.0,0.0);
+    glVertex3f(5.0+angle,-2.0,0.0);
+    //left
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(-5.0+angle,-2.0,0.0);
+    glVertex3f(-5.0+angle,-6.0,0.0);
+    glVertex3f(-5.0+angle,-6.0,5.0);
+    glVertex3f(-5.0+angle,-2.0,5.0);
+    //top
+    glColor3f(0.0,1.0,1.0);
+    glVertex3f(-5.0+angle,-2.0,0.0);
+    glVertex3f(-5.0+angle,-2.0,5.0);
+    glVertex3f(5.0+angle,-2.0,5.0);
+    glVertex3f(5.0+angle,-2.0,0.0);
+    //bottom
+    glColor3f(1.0,0.5,1.0);
+    glVertex3f(-5.0+angle,-6.0,0.0);
+    glVertex3f(-5.0+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-6.0,0.0);
+    glEnd();
+
+    glBegin (GL_QUADS) ;
+  //front
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(-5+angle,-2,5.0);
+    glVertex3f(-5+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-6.0,5.0);
+    glVertex3f(5.0+angle,-2.0,5.0);
+    //back
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(-8+angle,-4.0,5.0);
+    glVertex3f(-8.0+angle,-6.0,5.0);
+    glVertex3f(8.0+angle,-6.0,5.0);
+    glVertex3f(8.0+angle,-4.0,5.0);
+    //right
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(8.0+angle,-4.0,5.0);
+    glVertex3f(8.0+angle,-6,5.0);
+    glVertex3f(8.0+angle,-6.0,0.0);
+    glVertex3f(8.0+angle,-4.0,0.0);
+    //left
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(-8.0+angle,-4.0,0.0);
+    glVertex3f(-8.0+angle,-6.0,0.0);
+    glVertex3f(-8.0+angle,-6.0,5.0);
+    glVertex3f(-8.0+angle,-4.0,5.0);
+    //top
+    glColor3f(0.0,1.0,1.0);
+    glVertex3f(-8.0+angle,-4.0,0.0);
+    glVertex3f(-8.0+angle,-4.0,5.0);
+    glVertex3f(8.0+angle,-4.0,5.0);
+    glVertex3f(8.0+angle,-4.0,0.0);
+    //bottom
+    glColor3f(1.0,0.5,1.0);
+    glVertex3f(-8.0+angle,-6.0,0.0);
+    glVertex3f(-8.0+angle,-6.0,5.0);
+    glVertex3f(8.0+angle,-6.0,5.0);
+    glVertex3f(8.0+angle,-6.0,0.0);
+    glEnd();
+
+
+
+
+
 
 
 
