@@ -12,6 +12,24 @@ void timer(int);
 void init(){
 
 }
+void processSpecialKeys(int key, int x, int y) {
+
+	switch(key) {
+		case 'w' : //up button pressed
+				x += 0.13;
+				glutFullScreen();
+
+				break;
+		case 's' : //down button pressed
+                x -= 0.13;
+				break;
+	}
+}
+void processNormalKeys(unsigned char key, int x, int y) {
+
+	if (key == 27)
+		exit(0);
+}
 
 //------------------------------  reshapeFunc  ---------------------------------
 
@@ -211,6 +229,44 @@ void display (void)
     glVertex3f(8.0+angle,-6.0,5.0);
     glVertex3f(8.0+angle,-6.0,0.0);
     glEnd();
+    glBegin (GL_QUADS) ;
+  //front
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(-12.0,6.0,2.0);
+    glVertex3f(-12,1.0,2.0);
+    glVertex3f(-4.0,1.0,2.0);
+    glVertex3f(-4.0,6.0,2.0);
+    //back
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(1.0,4.0,-2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    //right
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(1.0,4.0,2.0);
+    glVertex3f(1.0,1.0,2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //left
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,2.0);
+    glVertex3f(-1.0,4.0,2.0);
+    //top
+    glColor3f(0.0,1.0,1.0);
+    glVertex3f(-1.0,4.0,-2.0);
+    glVertex3f(-1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,2.0);
+    glVertex3f(1.0,4.0,-2.0);
+    //bottom
+    glColor3f(1.0,0.5,1.0);
+    glVertex3f(1.0,1.0,2.0);
+    glVertex3f(1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,-2.0);
+    glVertex3f(-1.0,1.0,2.0);
+    glEnd();
 
 
 
@@ -290,6 +346,8 @@ int main (int argc, char **argv)
     glutReshapeFunc (reshapeFunc);
     glutTimerFunc(200,timer,0);
     glutIdleFunc (idleFunc);
+    glutKeyboardFunc(processNormalKeys);
+	glutSpecialFunc(processSpecialKeys);
     glClearColor(1,1,1,1);
     texture(); // Lighting and textures
     glutMainLoop();

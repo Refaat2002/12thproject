@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1672796248 source:c:\users\dell\desktop\refaat computer graphics\main.cpp
+1672803962 source:c:\users\dell\desktop\refaat computer graphics\main.cpp
 	<GL/gl.h>
 	<GL/glu.h>
 	<GL/glut.h>
