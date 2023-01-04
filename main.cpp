@@ -9,27 +9,46 @@ void display();
 float xRotated = 90.0, yRotated = 0.0, zRotated = 0.0;
 float angle=0;
 void timer(int);
-void init(){
+float ix=0;
 
+
+void keyboard(unsigned char Key,int x,int y)
+    {
+    if(Key=='x'){ix+=0.1;}
+    glutPostRedisplay();
+    }
+
+
+
+
+
+
+
+
+void circle()
+{
+    glColor3f (0.7, 0.7, 0.7);
+    glPushMatrix ();
+    glTranslatef    (-8+ix, 12, 5);
+    glRotatef       (60.0, 1,0,0);
+    glutSolidSphere(1.3,10, 30);
+    glPopMatrix ();
+
+    glColor3f (0.7, 0.7, 0.7);
+    glPushMatrix ();
+    glTranslatef    (-7, 12, 5.3);
+    glRotatef       (60.0, 1,0,0);
+    glutSolidSphere(1.3,10, 30);
+    glPopMatrix ();
+
+    glColor3f (0.7, 0.7, 0.7);
+    glPushMatrix ();
+    glTranslatef    (-6, 12, 5);
+    glRotatef       (60.0, 1,0,0);
+    glutSolidSphere(1.3,10, 30);
+    glPopMatrix ();
 }
-void processSpecialKeys(int key, int x, int y) {
 
-	switch(key) {
-		case 'w' : //up button pressed
-				x += 0.13;
-				glutFullScreen();
-
-				break;
-		case 's' : //down button pressed
-                x -= 0.13;
-				break;
-	}
-}
-void processNormalKeys(unsigned char key, int x, int y) {
-
-	if (key == 27)
-		exit(0);
-}
 
 //------------------------------  reshapeFunc  ---------------------------------
 
@@ -48,11 +67,14 @@ void reshapeFunc (int w, int h)
 
 void display (void)
 {
-    glClearColor(0,0.7,1,1.0);
+    glClearColor(0,0.0,0.4,1.0);
 
     glClear        (GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glLoadIdentity ();
     glTranslatef    (0.0, 0.0, -15.0);
+
+
+
 
 	//Your code is written here
    glTranslatef    (0.0, 0.0, -15);
@@ -286,6 +308,7 @@ void display (void)
     glVertex3f(-12.0,6.0,-4.0);
     glVertex3f(-12.0,6.0,2.0);
     glEnd();
+
     glBegin (GL_QUADS) ;
     //RIGHT HOUSE
   //front
@@ -345,6 +368,7 @@ void display (void)
     glVertex3f(4.0,6.0,2.0);
     glEnd();
 
+//////////////////////////////////////
 
 
 
@@ -352,7 +376,7 @@ void display (void)
 
 
 
-
+   circle();
 
 
 
@@ -414,27 +438,26 @@ const GLfloat high_shininess[] = { 100.0f };
 int main (int argc, char **argv)
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE); // buffer mode
+    glutInitDisplayMode(GLUT_RGB | GLUT_DOUBLE | GLUT_DEPTH); // buffer mode
     glutInitWindowSize     (800, 700);
     glutInitWindowPosition (700, 200);
-    glutCreateWindow       ("Sphere Rotating Animation");
+    glutCreateWindow       ("Refaat Alaa 20102156");
     glClearColor (1.0, 1.0, 1.0, 0.0);
     glutDisplayFunc (display);
     glutReshapeFunc (reshapeFunc);
     glutTimerFunc(200,timer,0);
     glutIdleFunc (idleFunc);
-    glutKeyboardFunc(processNormalKeys);
-	glutSpecialFunc(processSpecialKeys);
     glClearColor(1,1,1,1);
     texture(); // Lighting and textures
     glutMainLoop();
-    init();
+    glutKeyboardFunc(keyboard);
+    texture();
 }
 void timer(int)
 { glutPostRedisplay();
   glutTimerFunc(1000/60,timer,0);
   angle+=0.8;
-  if(angle>360)
-    angle=angle-360;
+  if(angle>100)
+    angle=angle-100;
 }
 
