@@ -231,7 +231,7 @@ void display (void)
     glEnd();
     glBegin (GL_QUADS) ;
   //front
-    glColor3f(1.0,0.0,0.0);
+    glColor3f(0.0,0.0,0.5);
     glVertex3f(-12.0,6.0,2.0);
     glVertex3f(-12,1.0,2.0);
     glVertex3f(-4.0,1.0,2.0);
@@ -266,6 +266,25 @@ void display (void)
     glVertex3f(-12.0,1.0,2.0);
     glVertex3f(-4.0,1.0,2.0);
     glVertex3f(-4.0,1.0,-4.0);
+    glEnd();
+    glBegin(GL_TRIANGLE_FAN);
+    glVertex3f(-8,8.0,-1.0);
+     //front pyramid
+    glColor3f(0.0,0.5,0.0);
+    glVertex3f(-12.0,6.0,2.0);
+    glVertex3f(-4.0,6.0,2.0);
+    //pyramid back
+    glColor3f(1.0,0.0,1.0);
+    glVertex3f(-12.0,6.0,-4.0);
+    glVertex3f(-4.0,6.0,-4.0);
+    //pyramid right
+    glColor3f(1.0,0.0,0.0);
+    glVertex3f(-4.0,6.0,2.0);
+    glVertex3f(-4.0,6.0,-4.0);
+    //pyramid left
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(-12.0,6.0,-4.0);
+    glVertex3f(-12.0,6.0,2.0);
     glEnd();
 
 
