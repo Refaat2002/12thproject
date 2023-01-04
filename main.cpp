@@ -286,6 +286,45 @@ void display (void)
     glVertex3f(-12.0,6.0,-4.0);
     glVertex3f(-12.0,6.0,2.0);
     glEnd();
+    glBegin (GL_QUADS) ;
+    //RIGHT HOUSE
+  //front
+    glColor3f(0.0,0.0,0.5);
+    glVertex3f(4.0,6.0,2.0);
+    glVertex3f(4,1.0,2.0);
+    glVertex3f(12.0,1.0,2.0);
+    glVertex3f(12.0,6.0,2.0);
+    //back
+    glColor3f(0.0,1.0,0.0);
+    glVertex3f(12.0,6.0,-4.0);
+    glVertex3f(12.0,1.0,-4.0);
+    glVertex3f(4.0,1.0,-4.0);
+    glVertex3f(4.0,6.0,-4.0);
+    //right
+    glColor3f(0.0,0.0,1.0);
+    glVertex3f(12.0,6.0,2.0);
+    glVertex3f(12.0,1.0,2.0);
+    glVertex3f(12.0,1.0,-4.0);
+    glVertex3f(12.0,6.0,-4.0);
+    //left
+    glColor3f(1.0,1.0,0.0);
+    glVertex3f(-12.0,6.0,-4.0);
+    glVertex3f(-12.0,1.0,-4.0);
+    glVertex3f(-12.0,1.0,2.0);
+    glVertex3f(-12.0,6.0,2.0);
+    //top
+    glColor3f(0.0,1.0,1.0);
+    glVertex3f(-12.0,6.0,-4.0);
+    glVertex3f(-12.0,6.0,2.0);
+    glVertex3f(-4.0,6.0,2.0);
+    glVertex3f(-4.0,6.0,-4.0);
+    //bottom
+    glColor3f(1.0,0.5,1.0);
+    glVertex3f(-12.0,1.0,-4.0);
+    glVertex3f(-12.0,1.0,2.0);
+    glVertex3f(-4.0,1.0,2.0);
+    glVertex3f(-4.0,1.0,-4.0);
+    glEnd();
 
 
 
