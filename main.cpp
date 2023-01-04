@@ -262,10 +262,10 @@ void display (void)
     glVertex3f(-4.0,6.0,-4.0);
     //bottom
     glColor3f(1.0,0.5,1.0);
-    glVertex3f(1.0,1.0,2.0);
-    glVertex3f(1.0,1.0,-2.0);
-    glVertex3f(-1.0,1.0,-2.0);
-    glVertex3f(-1.0,1.0,2.0);
+    glVertex3f(-12.0,1.0,-4.0);
+    glVertex3f(-12.0,1.0,2.0);
+    glVertex3f(-4.0,1.0,2.0);
+    glVertex3f(-4.0,1.0,-4.0);
     glEnd();
 
 
